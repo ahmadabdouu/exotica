@@ -1,6 +1,8 @@
 /*----general styles----*/
 
 * {
+  margin: 0px;
+  padding: 0px;
   box-sizing: border-box;
 }
 
@@ -8,8 +10,13 @@ body {
   margin: 0 auto;
   padding: 0;
   font-family: "Rubik", sans-serif;
-  background-color: rgba(0, 0, 0, 0.7);
+  background-image: url(../images/bg.jpg);
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
   color: #fff;
+
 }
 
 /*----customed component classes----*/
@@ -41,21 +48,22 @@ body {
 
 /*-----showcase area---- */
 
-.container {
+.showcase-container {
   background-image: url(../images/bg.jpg);
-}
+  height: 80vh;
+  }
 
 .navbar-container {
-  position: sticky;
+  position: fixed;
   top: 0;
-  height: 60px;
   margin: 0 auto;
   width: 90%;
   max-width: 1200px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  background-color: rgba(155, 155, 155, 0.2);
+  background-color: transparent;
+  z-index: 99;
 }
 
 .site-logo h1 {
@@ -70,6 +78,7 @@ body {
   justify-content: space-between;
   list-style: none;
   padding: 0;
+  margin-top: 0.5em;
 }
 
 .nav-li {
@@ -81,11 +90,25 @@ body {
   color: black;
   text-decoration: none;
   font-size: 1.2rem;
+  margin-left: 1em;
+  
 }
 
-nav a:hover,
-nav a:focus {
-  color: rgba(255, 255, 255, 0.3);
+.active{
+  background-color: rgba(0, 0, 0, 0.45);
+  color: white;
+  padding: 0.3em;
+  border-radius: 8px;
+  
+}
+.your-active-class {
+  background-color: rgba(0, 0, 0, 0.1);
+  color: white;
+  padding: 0.3em;
+  border-radius: 8px;
+}
+nav a:hover {
+  color: white;
 }
 
 .header-content {
@@ -189,30 +212,39 @@ nav a:focus {
 /*-----aboat section----*/
 
 .aboat-page {
+  background-color: rgba(0, 0, 0, 0.5);;
   padding: 4em;
+  height: 100vh;
+  
 }
 
 .footer {
+  background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   flex-direction: column;
   padding: 4em;
+  height: 100vh;
 }
 
 .aboat-page h3 {
+
   text-align: center;
   padding: 1em;
   border: 1px solid rgba(255, 255, 255, 0.3);
+  margin-bottom: 1.5em;
 }
 
 .aboat-page p {
   text-align: justify;
   line-height: 1.5em;
+  margin-bottom: 1em;
 }
 
 .footer h3 {
   text-align: center;
   padding: 1em;
   border: 1px solid rgba(255, 255, 255, 0.3);
+  margin-bottom: 2em;
 }
 
 /*-----footer section----*/
@@ -229,6 +261,13 @@ nav a:focus {
 }
 
 /*----responsivness----*/
+
+
+@media (max-width: 800px) {
+  .showcase-container {
+    height: 86vh;
+    }
+}
 
 @media (max-width: 675px) {
   .nav-list {
@@ -254,9 +293,11 @@ nav a:focus {
   .site-logo h1 {
     text-align: center;
   }
-
-  .bg-image {
-    background-size: 100% 100%;
+.header-content {
+  padding-top: 6em;
+}
+.showcase-container {
+  height: 85vh;
   }
 
   .aboat-page {

@@ -1,9 +1,97 @@
+/*----------Building the navbar list items---------*/
+
+const generateListItem = (buttonClass, text, activeClass, linkClass) => {
+  const navList = document.querySelector(".nav-list");
+  const listItem = document.createElement("li");
+  listItem.classList.add("nav-li", buttonClass);
+  const navLink = document.createElement("a");
+  navLink.classList.add("nav-link", activeClass, linkClass);
+  const link = document.createTextNode(text);
+  navLink.appendChild(link);
+  navLink.href = "#";
+  listItem.appendChild(navLink);
+  navList.appendChild(listItem);
+};
+
+generateListItem("home-button", "Home", "active", "home-link");
+generateListItem("houses-button", "Houses", "oh", "houses-link");
+generateListItem("about-button", "About", "oh", "about-link");
+generateListItem("footer-button", "Contact Us", "oh", "footer-link");
+
+
+
+
+
+
+/*-----------On scroll activate the active class for the target list item-----*/
+
+const onscrollPutClass = (target, link) => {
+  let distanceFormTheTop = window.scrollY;
+  let section = document.querySelector(target);
+  if (
+    section.offsetTop + section.offsetHeight > distanceFormTheTop &&
+    section.offsetTop <= distanceFormTheTop
+  ) {
+    link.classList.add("your-active-class");
+  } else {
+    link.classList.remove("your-active-class");
+  }
+};
+
+window.addEventListener("scroll", () => {
+  onscrollPutClass("#slider", housesLink);
+  onscrollPutClass("#home", homeLink);
+  onscrollPutClass("#aboat", aboutLink);
+  onscrollPutClass("#footer", footerLink);
+});
+
+/*--------------Declaring variables----------------*/
+
+const homeLink = document.querySelector(".home-link");
+const housesLink = document.querySelector(".houses-link");
+const footerLink = document.querySelector(".footer-link");
+const aboutLink = document.querySelector(".about-link");
 const afterButton = document.querySelector(".after");
 const beforeButton = document.querySelector(".before");
 const houses = document.querySelectorAll(".slide");
 const homeButton = document.querySelector(".home-button");
 const housesButton = document.querySelector(".houses-button");
+const aboutButton = document.querySelector(".about-button");
 const footerButton = document.querySelector(".footer-button");
+
+/*-----------On click activate the active class for the clicked li--------*/
+
+/*---about link---*/
+
+aboutLink.addEventListener("click", ()=> {
+  const previousActiveButton = document.getElementsByClassName("active");
+   previousActiveButton[0].classList.remove("active");
+  aboutLink.classList.add("active");
+})
+
+/*---houses link---*/
+
+housesLink.addEventListener("click", ()=> {
+  const previousActiveButton = document.getElementsByClassName("active");
+  previousActiveButton[0].classList.remove("active");
+  housesLink.classList.add("active");
+})
+
+/*---home link---*/
+
+homeLink.addEventListener("click", ()=> {
+  const previousActiveButton = document.getElementsByClassName("active");
+  previousActiveButton[0].classList.remove("active");
+  homeLink.classList.add("active");
+})
+
+/*---contact us link---*/
+
+footerLink.addEventListener("click", ()=> {
+  const previousActiveButton = document.getElementsByClassName("active");
+  previousActiveButton[0].classList.remove("active");
+  footerLink.classList.add("active");
+})
 
 /*--------------------Houses images functions-------------------- */
 
@@ -36,7 +124,7 @@ const previousHouse = () => {
   showSlide.classList.remove("show");
 };
 
-/* ------ events--------- */
+/* ------slideshow  events--------- */
 
 afterButton.addEventListener("click", nextHouse);
 
@@ -46,9 +134,9 @@ beforeButton.addEventListener("click", previousHouse);
 
 const smoothScroll = (target, duration) => {
   let startingTime = null;
-  var target = document.querySelector(target);
+  let targetx = document.querySelector(target);
   let startingPosition = window.pageYOffset;
-  let targetPosition = target.getBoundingClientRect().top;
+  let targetPosition = targetx.getBoundingClientRect().top;
   let distanceNeeded = targetPosition - startingPosition;
 
   const animationScroll = (currentTime) => {
@@ -68,7 +156,7 @@ const smoothScroll = (target, duration) => {
   requestAnimationFrame(animationScroll);
 };
 
-/*--------events------- */
+/*--------smooth scrolling events------- */
 
 housesButton.addEventListener("click", function () {
   smoothScroll("#slider", 2000);
@@ -81,3 +169,8 @@ homeButton.addEventListener("click", function () {
 footerButton.addEventListener("click", function () {
   smoothScroll("#footer", 4000);
 });
+aboutButton.addEventListener("click", function () {
+  smoothScroll("#aboat", 4000);
+});
+
+/*-------------------------------------------------------------------------------------------------------*/
